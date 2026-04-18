@@ -17,7 +17,9 @@
     <title>Solidarité Partagée</title>
   </head>
   <body class="p-4 bg-white">
-    <div class="container mx-auto p-4 border border-success rounded mb-3 w-75 shadow ">
+    <div
+      class="container mx-auto p-4 border border-success rounded mb-3 w-75 shadow"
+    >
       <h3 class="text-center w-75 mx-auto bg-white text-success rounded">
         <i class="fa-solid fa-hand-holding-heart"></i> Soumission de Candidature
       </h3>
@@ -41,11 +43,13 @@
           </label>
           <select id="ville" class="form-select" required>
             <option value="" selected disabled>Ville</option>
-            <option value="Agadir">agadir</option>
-            <option value="Marrakech">marrakech</option>
+            <option value="Tanger">Tanger</option>
+            <option value="Tetouan">Tetouan</option>
+            <option value="Kenitra">Kenitra</option>
+            <option value="Rabat">Rabat</option>
             <option value="Casablanca">Casablanca</option>
-            <option value="Tanger">tanger</option>
-            <option value="Tetouan">tetouan</option>
+            <option value="Marrakech">Marrakech</option>
+            <option value="Agadir">Agadir</option>
           </select>
         </div>
         <div class="mb-3">
@@ -62,27 +66,27 @@
             <option value="Médecin">Médecin</option>
             <option value="Éducateur">Éducateur</option>
             <option value="Infirmier">Infirmier</option>
-            <option value="Responsable dÁctivitée">
-              Responsable dÁctivitée
+            <option value="Responsable d'activité">
+              Responsable d'activité
             </option>
           </select>
         </div>
         <div class="mb-3">
-          <label for="disponibilité" class="form-label"
+          <label for="disponibilite" class="form-label"
             ><i class="fa-solid fa-clock"></i> Disponibilité:
           </label>
           <select
-            name="disponibilité"
-            id="disponibilité"
+            name="disponibilite"
+            id="disponibilite"
             class="form-select"
             required
           >
             <option value="" selected disabled>Disponibilité</option>
             <option value="A temps plein">A temps plein</option>
-            <option value="Semaine">semaine</option>
-            <option value="Week-end">week-end</option>
-            <option value="Soire">soire</option>
-            <option value="Jour">jour</option>
+            <option value="Semaine">Semaine</option>
+            <option value="Week-end">Week-end</option>
+            <option value="Soirée">Soirée</option>
+            <option value="Jour">Jour</option>
           </select>
         </div>
         <div class="mb-3">
@@ -91,12 +95,12 @@
           </label>
           <select name="mission" id="mission" class="form-select" required>
             <option value="" selected disabled>Mission souhaitée</option>
-            <option value="Collecte de vêtements">collecte de vêtements</option>
+            <option value="Collecte de vêtements">Collecte de vêtements</option>
             <option value="Consultations médicales">
-              consultations médicales
+              Consultations médicales
             </option>
             <option value="Distribution de nourriture">
-              distribution de nourriture
+              Distribution de nourriture
             </option>
             <option value="Infirmier">Infirmier</option>
           </select>
@@ -122,7 +126,7 @@
             type="password"
             name=""
             id="password"
-            minlength="6"
+            minlength="7"
             placeholder="supérieure à 6 caractères"
             class="form-control"
             required
@@ -137,25 +141,48 @@
     </div>
 
     <hr />
-    <div class="container table-responsive">
+    <div class="container">
       <h3 class="text-center w-75 mx-auto bg-white mb-2 text-success rounded">
         <i class="fa-solid fa-people-group"></i> Tableau des Candidatures
       </h3>
-      <table
-        class="table table-bordered border-success table-responsive text-center shadow"
-      >
-        <thead class="table-success">
-          <tr>
-            <th>Nom Complet</th>
-            <th>Ville</th>
-            <th>Compétence</th>
-            <th>Disponibilité</th>
-            <th>Type de mission</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="table_content"></tbody>
-      </table>
+      <div class="table-responsive">
+        <table
+          class="table table-bordered table-striped border-success text-center shadow"
+        >
+          <thead class="table-success position-sticky top-0">
+            <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  name=""
+                  id="selectAll"
+                  onclick="selectAll()"
+                  class="form-check-input"
+                />
+              </th>
+              <th>Nom Complet</th>
+              <th>Ville</th>
+              <th>Compétence</th>
+              <th>Disponibilité</th>
+              <th>Type de mission</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="table_content"></tbody>
+          <tfoot class="table-light">
+            <tr>
+              <td colspan="7">
+                <button
+                  onclick="delChecked()"
+                  class="btn btn-sm text-danger btn-link"
+                >
+                  Supprimer Sélection<span id="numSelected"></span>
+                </button>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
 
     <script src="script.js"></script>
