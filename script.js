@@ -1,22 +1,38 @@
+// declaring the benevols 
 let benevoles = [];
+
+// setting an index to check in case of edit
 let editIndex = null;
+
 let myform = document.getElementById("myform");
+//on submit
 myform.addEventListener("submit", function (event) {
+  
   event.preventDefault();
   soumettre();
+  
 });
+
+// render func
 
 function display() {
   document.getElementById("selectAll").checked = false;
+  
   let candidates = document.getElementById("table_content");
+  
   candidates.innerHTML = "";
+  
   if (benevoles.length == 0) {
+    
     candidates.innerHTML = `<tr>
               <td colspan="7" class="text-muted">Aucune candidature pour le moment</td>
               </tr>`;
     return;
+    
   }
+  
   let html = "";
+  
   benevoles.forEach((bene, index) => {
     html += `
                 <tr>
@@ -32,8 +48,10 @@ function display() {
                     </td>
                 </tr> `;
   });
+  
   candidates.innerHTML = html;
 }
+// displaying candidates
 display();
 function soumettre() {
   let nom = document.getElementById("nom").value.trim();
@@ -78,7 +96,8 @@ function soumettre() {
     display();
     alert(`La candidature de ${nom} a été enregistrée avec succès`);
     myform.reset();
-  } else {
+  } 
+  else {
     if (confirm("Vous voulez vraiment modifier cette candidature ?")) {
       benevoles[editIndex].nom = nom[0].toUpperCase() + nom.slice(1);
       benevoles[editIndex].ville = ville;
@@ -86,15 +105,19 @@ function soumettre() {
       benevoles[editIndex].disponibilite = disponibilite;
       benevoles[editIndex].mission = mission;
       benevoles[editIndex].email = email;
+      
       benevoles[editIndex].password = password;
       display();
       alert(`La candidature de '${nom}' a été bien modifiée`);
     }
+
+    
     editIndex = null;
     myform.reset();
     document.getElementById("soumettre").textContent = "Soumettre";
   }
 }
+
 
 function modify(index) {
   editIndex = index;
@@ -109,9 +132,12 @@ function modify(index) {
   document.getElementById("password").value = benevoles[index].password;
 }
 
+
 function del(index) {
+  
   if (confirm("Voulez-vous vraiment supprimer cette candidature ?")) {
     benevoles.splice(index, 1);
+    
     display();
   }
 }
@@ -119,7 +145,9 @@ function delChecked() {
   let checkedCandidates = document.querySelectorAll(
     'input[name="select"]:checked',
   );
+  
   let checkedIndexes = [];
+  
   checkedCandidates.forEach((candidate) => {
     checkedIndexes.push(Number(candidate.dataset.index));
   });
@@ -132,6 +160,7 @@ function delChecked() {
   ) {
     checkedIndexes.sort((a, b) => b - a);
     checkedIndexes.forEach((i) => {
+      
       benevoles.splice(i, 1);
     });
     display();
